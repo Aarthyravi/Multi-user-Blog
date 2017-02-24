@@ -7,13 +7,14 @@ import string
 import webapp2
 import jinja2
 
+# set The Secret code. No one track the cookies value.
 SECRET = 'imsosecret'
 from google.appengine.ext import db
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),autoescape = True)
 
-
+# User Security
 def make_secure(s):
     return "%s|%s" %(s,hmac.new(SECRET,s).hexdigest())
 
@@ -38,7 +39,7 @@ def valid_pw(name,password,h):
 def users_key(group='default'):
     return db.Key.from_path('users', group)
 
-
+# templates
 class Handler(webapp2.RequestHandler):
     def write(self,*a,**kw):
         self.response.write(*a,**kw)
@@ -59,6 +60,7 @@ class Handler(webapp2.RequestHandler):
         webapp2.RequestHandler.initialize(self, *a, **kw)
         self.user = self.read_secure_cookie('user')
 
+#User Model
 class User(db.Model):
     name = db.StringProperty(required = True)
     pw_hash = db.StringProperty(required = True)
@@ -79,6 +81,7 @@ class User(db.Model):
         if u and valid_pw(name, pw, u.pw_hash):
             return u
 
+# Login Handler with username & Password
 class LoginHandler(Handler):
     def get(self):
         self.render('login.html')
@@ -96,12 +99,13 @@ class LoginHandler(Handler):
             msg = 'Invalid login'
             self.render('login.html', error = msg)
 
-
+# Logout Handler
 class LogoutHandler(Handler):
     def get(self):
         self.response.headers.add_header('Set-Cookie', 'user=; Path=/')
         self.redirect('/blog/signup')
 
+# Signup Handler with username,password,Verify password and optional email and check the Validation for all field.
 class SignupHandler(Handler):
     def get(self):
         self.render("signup.html")
@@ -140,6 +144,7 @@ class SignupHandler(Handler):
                 self.response.headers.add_header('Set-Cookie', 'user=%s; Path=/' % new_cookie)
                 self.redirect('/blog/welcome')
 
+# Once the logging page / Signup page is valid then the welcome page is displayed wuth username and logout
 class WelcomeHandler(Handler):
        def get(self):
            user = self.request.cookies.get('user')
@@ -152,6 +157,7 @@ class WelcomeHandler(Handler):
            else:
                self.redirect('/blog/signup')
 
+# validation function for username,password & email
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 def valid_username(username):
     return username and USER_RE.match(username)
@@ -164,7 +170,7 @@ EMAIL_RE = re.compile(r"^[\S]+@[\S]+.[\S]+$")
 def valid_email(email):
     return not email or EMAIL_RE.match(email)
 
-
+# Blog Model
 class Blog(db.Model):
     subject = db.StringProperty(required = True)
     content = db.TextProperty(required = True)
@@ -178,12 +184,13 @@ class Blog(db.Model):
     def comments(self):
         return Comment.all().filter("post = ", str(self.key().id()))
 
-
+# Front page of Blog
 class MainPage(Handler):
     def get(self):
       blogs = db.GqlQuery("SELECT * FROM Blog ORDER BY created DESC limit 10")
       self.render("front.html",blogs=blogs)
 
+# Valid user have to post the new post with subject and content
 class NewPost(Handler):
      def get(self):
          if self.user:
@@ -206,6 +213,7 @@ class NewPost(Handler):
              error = "We need both a Subject and some content"
              self.render("newpost.html",subject=subject,content=content,error=error)
 
+# User of the post can only be able to edit their post
 class EditPost(Handler):
     def get(self, post_id):
         if not self.user:
@@ -237,7 +245,7 @@ class EditPost(Handler):
             post.put()
             self.redirect('/blog/%s' % str(post.key().id()))
 
-
+# User of the post can not be able to like their post. only other user like
 class LikePost(Handler):
     def get(self, post_id):
         if not self.user:
@@ -257,6 +265,7 @@ class LikePost(Handler):
                 post.put()
                 self.redirect("/blog")
 
+# User of the post can only be able to delete their post
 class DeletePost(Handler):
     def get(self, post_id):
         if not self.user:
@@ -275,6 +284,7 @@ class DeletePost(Handler):
             else:
                 self.redirect("/blog")
 
+# Single post display with comments
 class BlogPost(Handler):
      def get(self,post_id):
 
@@ -287,11 +297,13 @@ class BlogPost(Handler):
 
          self.render("post.html",post=post)
 
+# Comment Model
 class Comment(db.Model):
     comment = db.StringProperty(required=True)
     post = db.StringProperty(required=True)
     author = db.StringProperty(required=True)
 
+# Newcomment
 class NewComment(Handler):
     def get(self, post_id):
         if not self.user:
@@ -321,6 +333,7 @@ class NewComment(Handler):
             error = "comment,Please!"
             self.render("newcomment.html", post=post, error=error)
 
+# user of the comment can only be able to edit their comment.
 class EditComment(Handler):
     def get(self, post_id,comment_id):
         comment = Comment.get_by_id(int(comment_id))
@@ -335,7 +348,7 @@ class EditComment(Handler):
             comment.put()
             self.redirect('/blog/%s' % str(post_id))
 
-
+# user of the comment can only be able to delete their comment.
 class DeleteComment(Handler):
     def get(self, post_id, comment_id):
         comment = Comment.get_by_id(int(comment_id))
