@@ -1,1 +1,59 @@
+body{
+  background: #f0f0f0;
+}
+.error{
+  color: red
+}
 
+label{
+  font-size: 20px;
+  display: block;
+}
+input[type=text],[type=password]{
+  font-size: 20px;
+  width: 300px;
+  padding: 2px;
+  border-radius: 0.5rem;
+}
+h1{
+  margin-top: 20px;
+  color: blue;
+
+}
+hr{
+  border: 1px solid;
+}
+textarea[name=comment]{
+  font-size: 20px;
+  width: 400px;
+  height: 150px;
+}
+textarea[name=content]{
+  font-size: 20px;
+  width: 300px;
+  height: 250px;
+}
+input[type=submit]{
+  font-size: 20px;
+  border-radius: 0.5rem;
+}
+.signup {
+	max-width: 25em;
+	margin: 0 auto;
+	background-color: #f4f5f6;
+	border: .1rem solid #d1d1d1;
+	padding: 3rem;
+	border-radius: 2rem;
+}
+.newpost {
+  margin: 0 auto;
+  max-width: 25em;
+}
+.border{
+
+    background: white;
+    border-bottom: 5px solid rgba(0,0,0,.1);
+    margin: 2rem 0;
+    padding: 1rem;
+
+}
