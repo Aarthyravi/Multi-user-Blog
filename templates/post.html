@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class= "container">
+  {% if user %}
+      {% if user == post.user %}
+        <h4><a href="/blog/{{post.key().id()}}/editpost">Edit</a>
+        |
+        <a href="/blog/{{post.key().id()}}/deletepost">Delete</a></h4>
+      {% else %}
+        <h4><a href="/blog/{{post.key().id()}}/likepost"> Like</a></h4>
+      {% endif %}
+  <div class = "row">
+    <div class="col-md-6">
+     <h3><div class ="blog-subject">{{post.subject}}</div></h3>
+    </div>
+    <div align="right"class="col-md-6">
+      <h4>{{post.created.strftime("%b %d, %Y")}}</h4>
+    </div>
+   </div>
+   <div class = "row">
+     <div class = "col-md-12">
+       <hr>
+     </div>
+   </div>
+ <div class = "row">
+  <div class="col-md-12">
+    {{post.content.replace('\n','<br>') | safe}}
+  </div>
+</div>
+{% endif %}
+<br>
+
+
+{% if user and post.comments %}
+<div>
+    <span>{{post.comments.count()}} comments</span>
+</div>
+    <h2>Comments</h2>
+
+    {% for comment in post.comments %}
+    <div class = "border">
+    <div class = "row">
+      <div class = "col-md-6">
+        <h4> {{comment.comment}}</h4>
+      </div>
+        {% if user == comment.author %}
+        <div class = "col-md-6">
+         <h4><a href="/blog/{{post.key().id()}}/deletecomment/{{comment.key().id()}}">delete</a>
+         |
+         <a href="/blog/{{post.key().id()}}/editcomment/{{comment.key().id()}}">edit</a></h4>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    <br><br>
+    <a href="/blog/{{post.key().id()}}/newcomment">add new comment</a>
+{% endif %}
+</div>
+{% endblock %}

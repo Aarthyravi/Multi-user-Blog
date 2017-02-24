@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class = "signup">
+    <form method = "post">
+      <div class = "container">
+        <div class="row">
+          <div class= "col-md-12">
+            <h2> Signup</h2>
+          </div>
+        <div class = "row">
+          Username
+        </div>
+        <div class="row">
+          <input type="text" name="username" value = "{{username}}"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{ error_username }}
+        </div>
+        <div class = "row">
+            Password
+        </div>
+        <div class="row">
+            <input type="password" name="password" value=""> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{error_password}}
+        </div>
+        <div class = "row">
+            Verify Password
+        </div>
+        <div class = "row">
+            <input type="password" name="verify" value=""> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{error_verify}}
+        </div>
+        <div class = "row">
+           Email(Optional)
+        </div>
+        <div class = "row">
+           <input type="text" name="email"value="{{email}}"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{error_email}}
+        <div>
+        </div><br>
+      <div class = "row">
+         <input type = "submit" value = "Signup">
+      </div>
+    </div>
+    </form>
+  </div>
+  {% endblock %}
