@@ -13,7 +13,7 @@
    - After logging out, the cookie is cleared and user is redirected to the Signup page
     
  #How to run this project 
-  -Setup
+    -Setup your PC
     -Install Python if necessary.
     -Install Google App Engine SDK.
     -Sign Up for a Google App Engine Account.
@@ -21,6 +21,6 @@
     -Install Jinja
  - you can use dev_appserver.py to run a copy of your app on your own computer, and access it at http://localhost:8080/.
  
--Deploy your project with gcloud app deploy.
--View your project  appname.appspot.com.
+   -Deploy your project with gcloud app deploy.
+   -View your project  appname.appspot.com.
  
