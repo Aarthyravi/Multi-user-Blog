@@ -1,4 +1,4 @@
-from handlers.mainhandler import Handler
+from mainhandler import Handler
 from models.blogmodel import Blog
 from models.commentmodel import Comment
 from google.appengine.ext import db
