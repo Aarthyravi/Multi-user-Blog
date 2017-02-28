@@ -1,7 +1,7 @@
 #Create a Multi-User Blog
-  1. Front page that lists blog posts.
-  2. A form to submit new entries.
-  3. Blog posts have their own page.
+  - Front page that lists blog posts.
+  - A form to submit new entries.
+  - Blog posts have their own page.
   
  #User SignUp
    - Signup the new user. After a successful signup,a user is directed to a welcome page.
