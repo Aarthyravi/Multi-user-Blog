@@ -10,7 +10,7 @@
    - Logged Users can comment on posts. They can only edit/delete their own comment on post.
    
  #User Logout
-   - After logging out, the cookie is cleared and user is redirected to the Signup page
+   - After logging out, the cookie is cleared and user is redirected to the Signup page.
     
  #Setup your PC
    - Install Python.
