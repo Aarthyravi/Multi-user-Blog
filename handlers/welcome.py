@@ -1,5 +1,5 @@
-from handlers.mainhandler import Handler
-from userstuff import *
+from mainhandler import Handler
+import mainhandler
 # Once the logging page / Signup page is valid then the welcome page is displayed wuth username and logout
 class WelcomeHandler(Handler):
        def get(self):
