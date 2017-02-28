@@ -2,6 +2,8 @@ from mainhandler import Handler
 from models.blogmodel import Blog
 from google.appengine.ext import db
 # User of the post can not be able to like their post. only other user like
+
+
 class LikePost(Handler):
     def get(self, post_id):
         if not self.user:
@@ -13,11 +15,11 @@ class LikePost(Handler):
             logged_user = self.user
             if logged_user in post.liked_by:
                 error = "Already You liked this post"
-                self.render("error.html",error=error)
+                self.render("error.html", error=error)
             else:
                 if user == logged_user:
                     error = "You can't like your own post"
-                    self.render("error.html",error=error)
+                    self.render("error.html", error=error)
                 else:
                     post.likes += 1
                     post.liked_by.append(logged_user)
