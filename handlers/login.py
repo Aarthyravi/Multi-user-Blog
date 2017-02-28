@@ -1,6 +1,6 @@
 from models.usermodel import User
-from handlers.mainhandler import Handler
-from userstuff import *
+from mainhandler import Handler
+import mainhandler
 # Login Handler with username & Password
 class LoginHandler(Handler):
     def get(self):
