@@ -22,16 +22,23 @@ from handlers.post import BlogPost
 from handlers.signup import SignupHandler
 from handlers.welcome import WelcomeHandler
 
-app = webapp2.WSGIApplication([('/blog',MainPage),('/',MainPage),('',MainPage),
-                             ('/blog/signup',SignupHandler),
-                             ('/blog/welcome',WelcomeHandler),
-                             ('/blog/login',LoginHandler),
-                             ('/blog/logout',LogoutHandler),('/blog/newpost',NewPost),
-                             ('/blog/(\d+)/deletepost',DeletePost),
-                             ('/blog/(\d+)/editpost', EditPost),
-                             ('/blog/(\d+)',BlogPost),
-                             ('/blog/(\d+)/newcomment',NewComment),
-                             ('/blog/(\d+)/likepost', LikePost),
-                             ('/blog/(\d+)/editcomment/(\d+)',EditComment),
-                             ('/blog/(\d+)/deletecomment/(\d+)',DeleteComment),
-                             ('/blog/commenterror',CommentError),],debug = True)
+app = webapp2.WSGIApplication([
+                               ('/blog', MainPage), ('/', MainPage),
+                               ('', MainPage),
+                               ('/blog/signup', SignupHandler),
+                               ('/blog/welcome', WelcomeHandler),
+                               ('/blog/login', LoginHandler),
+                               ('/blog/logout', LogoutHandler),
+                               ('/blog/newpost', NewPost),
+                               ('/blog/(\d+)/deletepost', DeletePost),
+                               ('/blog/(\d+)/editpost', EditPost),
+                               ('/blog/(\d+)', BlogPost),
+                               ('/blog/(\d+)/newcomment', NewComment),
+                               ('/blog/(\d+)/likepost', LikePost),
+                               ('/blog/(\d+)/editcomment/(\d+)',
+                                EditComment),
+                               ('/blog/(\d+)/deletecomment/(\d+)',
+                                DeleteComment),
+                               ('/blog/commenterror', CommentError)
+                              ],
+                              debug=True)
