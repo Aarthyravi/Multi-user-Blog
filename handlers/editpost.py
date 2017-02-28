@@ -28,6 +28,7 @@ class EditPost(Handler):
                 self.render("error.html", error=error)
 
     def post(self, post_id):
+        """ Post the edited post """
         if not self.user:
             self.redirect("/blog/login")
         else:
