@@ -1,6 +1,6 @@
-from handlers.mainhandler import Handler
+from mainhandler import Handler
 from models.blogmodel import Blog
-from userstuff import *
+import mainhandler 
 # Valid user have to post the new post with subject and content
 class NewPost(Handler):
      def get(self):
