@@ -2,6 +2,8 @@ from mainhandler import Handler
 from models.blogmodel import Blog
 from google.appengine.ext import db
 # User of the post can only be able to delete their post
+
+
 class DeletePost(Handler):
     def get(self, post_id):
         if not self.user:
@@ -23,4 +25,4 @@ class DeletePost(Handler):
                 self.render("deletepost.html")
             else:
                 error = "You can't delete this post"
-                self.render("error.html",error=error)
+                self.render("error.html", error=error)
