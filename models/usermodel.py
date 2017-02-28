@@ -1,19 +1,21 @@
 from google.appengine.ext import db
 from mainhandler import Handler
 import mainhandler
-#User Model
+# User Model
+
+
 class User(db.Model):
-    name = db.StringProperty(required = True)
-    pw_hash = db.StringProperty(required = True)
-    email = db.StringProperty(required = False)
+    name = db.StringProperty(required=True)
+    pw_hash = db.StringProperty(required=True)
+    email = db.StringProperty(required=False)
 
     @classmethod
     def by_id(cls, uid):
         return User.get_by_id(uid, parent=users_key())
 
     @classmethod
-    def by_name(cls,name):
-        u = User.all().filter('name =',name).get()
+    def by_name(cls, name):
+        u = User.all().filter('name =', name).get()
         return u
 
     @classmethod
