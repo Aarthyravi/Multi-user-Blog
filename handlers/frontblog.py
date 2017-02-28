@@ -1,4 +1,4 @@
-from handlers.mainhandler import Handler
+from mainhandler import Handler
 from models.blogmodel import Blog
 from google.appengine.ext import db
 # Front page of Blog
