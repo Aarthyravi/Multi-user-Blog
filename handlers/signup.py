@@ -1,6 +1,6 @@
 from models.usermodel import User
-from handlers.mainhandler import Handler
-from userstuff import *
+from mainhandler import Handler
+import mainhandler
 # Signup Handler with username,password,Verify password and optional email and check the Validation for all field.
 class SignupHandler(Handler):
     def get(self):
