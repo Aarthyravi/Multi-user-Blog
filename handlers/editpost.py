@@ -6,6 +6,7 @@ from google.appengine.ext import db
 
 class EditPost(Handler):
     def get(self, post_id):
+        """ get the post of the post_id for editing """
         if not self.user:
             self.redirect('/blog/login?error=You need to be logged')
         else:
