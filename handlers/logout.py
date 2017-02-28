@@ -1,4 +1,4 @@
-from handlers.mainhandler import Handler
+from mainhandler import Handler
 # Logout Handler
 class LogoutHandler(Handler):
     def get(self):
