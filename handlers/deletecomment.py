@@ -20,4 +20,3 @@ class DeleteComment(Handler):
         else:
             error = "You can't delete this comment"
             self.render("error.html",error=error)
-
