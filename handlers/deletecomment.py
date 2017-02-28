@@ -3,6 +3,8 @@ from models.commentmodel import Comment
 from google.appengine.ext import db
 from handlers.error import CommentError
 # user of the comment can only be able to delete their comment.
+
+
 class DeleteComment(Handler):
     def get(self, post_id, comment_id):
         if not self.user:
@@ -19,4 +21,4 @@ class DeleteComment(Handler):
                 self.redirect('/commenterror')
         else:
             error = "You can't delete this comment"
-            self.render("error.html",error=error)
+            self.render("error.html", error=error)
