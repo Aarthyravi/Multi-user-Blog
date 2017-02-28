@@ -3,6 +3,8 @@ from models.blogmodel import Blog
 from models.commentmodel import Comment
 from google.appengine.ext import db
 # Newcomment
+
+
 class NewComment(Handler):
     def get(self, post_id):
         if not self.user:
@@ -21,9 +23,9 @@ class NewComment(Handler):
         comment = self.request.get('comment')
         if comment:
             author = self.request.get('author')
-            c = Comment(comment=comment,post=post_id,author=author)
+            c = Comment(comment=comment, post=post_id, author=author)
             c.put()
-            self.redirect('/blog/%s' %post_id)
+            self.redirect('/blog/%s' % post_id)
         else:
             error = "comment,Please!"
             self.render("newcomment.html", post=post, error=error)
