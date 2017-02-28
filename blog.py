@@ -1,13 +1,12 @@
 from google.appengine.ext import db
-from userstuff import *
-
+import webapp2
 # Models
 from models.blogmodel import Blog
 from models.commentmodel import Comment
 from models.usermodel import User
 
 # Handlers
-from handlers.mainhandler import Handler
+from mainhandler import Handler
 from handlers.deletecomment import DeleteComment
 from handlers.deletepost import DeletePost
 from handlers.editcomment import EditComment
@@ -23,7 +22,8 @@ from handlers.post import BlogPost
 from handlers.signup import SignupHandler
 from handlers.welcome import WelcomeHandler
 
-app = webapp2.WSGIApplication([('/blog',MainPage),('/blog/signup',SignupHandler),
+app = webapp2.WSGIApplication([('/blog',MainPage),('/',MainPage),('',MainPage),
+                             ('/blog/signup',SignupHandler),
                              ('/blog/welcome',WelcomeHandler),
                              ('/blog/login',LoginHandler),
                              ('/blog/logout',LogoutHandler),('/blog/newpost',NewPost),
