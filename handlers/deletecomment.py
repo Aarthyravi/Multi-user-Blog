@@ -1,4 +1,4 @@
-from handlers.mainhandler import Handler
+from mainhandler import Handler
 from models.commentmodel import Comment
 from google.appengine.ext import db
 from handlers.error import CommentError
@@ -20,3 +20,4 @@ class DeleteComment(Handler):
         else:
             error = "You can't delete this comment"
             self.render("error.html",error=error)
+
