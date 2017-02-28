@@ -1,8 +1,8 @@
-from handlers.mainhandler import Handler
+from mainhandler import Handler
 from models.blogmodel import Blog
 from google.appengine.ext import db
 
-from userstuff import *
+import mainhandler
 # Single post display with comments
 class BlogPost(Handler):
      def get(self,post_id):
