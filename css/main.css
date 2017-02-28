@@ -4,7 +4,6 @@ body{
 .error{
   color: red
 }
-
 label{
   font-size: 20px;
   display: block;
@@ -50,10 +49,8 @@ input[type=submit]{
   max-width: 25em;
 }
 .border{
-
     background: white;
     border-bottom: 5px solid rgba(0,0,0,.1);
     margin: 2rem 0;
     padding: 1rem;
-
 }
