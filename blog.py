@@ -6,7 +6,7 @@ from models.commentmodel import Comment
 from models.usermodel import User
 
 # Handlers
-from mainhandler import Handler
+from handlers.mainhandler import Handler
 from handlers.deletecomment import DeleteComment
 from handlers.deletepost import DeletePost
 from handlers.editcomment import EditComment
