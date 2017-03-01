@@ -10,17 +10,17 @@
    - Logged Users can comment on posts. They can only edit/delete their own comment on post.
    
  #User Logout
-   - After logging out, the cookie is cleared and user is redirected to the Signup page.
+  - After logging out, the cookie is cleared and user is redirected to the Signup page.
     
  #Setup your PC
-   - Install Python.
+  - Install Python.
    - Install Google App Engine SDK.
    - Install Jinja
    - Sign Up for a Google App Engine Account.
    - Create a new project in Google’s Developer Console using a unique name.
         
  #How to run this project   
-     - you can use dev_appserver.py to run a copy of your app on your own computer, 
+    - you can use dev_appserver.py to run a copy of your app on your own computer, 
        and access it at http://localhost:8080/.
  
    - Deploy your project with gcloud app deploy.
