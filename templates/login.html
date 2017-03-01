@@ -23,7 +23,9 @@
            <input type = "submit" value = "Login">
         </div>
       </div>
+      {% if error %}
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{error}}
+    {% endif %}
     </form>
   </div>
   {% endblock %}
