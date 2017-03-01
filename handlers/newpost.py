@@ -1,6 +1,6 @@
-from mainhandler import Handler
+from handlers.mainhandler import Handler
 from models.blogmodel import Blog
-import mainhandler
+import userstuff
 # Valid user have to post the new post with subject and content
 
 
@@ -10,10 +10,12 @@ class NewPost(Handler):
             self.render("newpost.html")
         else:
             self.redirect("/blog/login")
+            return
 
     def post(self):
         if not self.user:
             self.redirect('/blog/login')
+            return
         subject = self.request.get('subject')
         content = self.request.get('content')
         user = self.read_secure_cookie('user')
@@ -25,4 +27,3 @@ class NewPost(Handler):
             error = "We need both a Subject and some content"
             self.render("newpost.html", subject=subject, content=content,
                         error=error)
-

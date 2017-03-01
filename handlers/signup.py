@@ -1,6 +1,6 @@
+import userstuff
 from models.usermodel import User
-from mainhandler import Handler
-import mainhandler
+from handlers.mainhandler import Handler
 # Signup Handler with username,password,
 # Verify password and optional email and
 # check the Validation for all field.
@@ -18,16 +18,16 @@ class SignupHandler(Handler):
         email = self.request.get("email")
 
         param = dict(username=username, password=password, email=email)
-        if not valid_username(username):
+        if not userstuff.valid_username(username):
             param['error_username'] = "This is not a valid username"
             error = True
-        if not valid_password(password):
+        if not userstuff.valid_password(password):
             param['error_password'] = "This is not a valid password"
             error = True
         elif password != verify:
             param['error_verify'] = "Your password didn't match"
             error = True
-        if not valid_email(email):
+        if not userstuff.valid_email(email):
             param['error_email'] = "This is not a valid email"
             error = True
         if error:
@@ -39,10 +39,10 @@ class SignupHandler(Handler):
                 self.render('signup.html', error_username=msg)
             else:
                 u = User(name=username,
-                         pw_hash=make_pw_hash(username, password),
+                         pw_hash=userstuff.make_pw_hash(username, password),
                          email=email)
                 u.put()
-                new_cookie = make_secure(str(username))
+                new_cookie = userstuff.make_secure(str(username))
                 self.response.headers.add_header('Set-Cookie',
                                                  'user=%s; Path=/'
                                                  % new_cookie)

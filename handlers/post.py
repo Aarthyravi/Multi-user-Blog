@@ -1,7 +1,7 @@
-from mainhandler import Handler
+from handlers.mainhandler import Handler
 from models.blogmodel import Blog
 from google.appengine.ext import db
-import mainhandler
+import userstuff
 # Single post display with comments
 
 
@@ -11,6 +11,5 @@ class BlogPost(Handler):
         post = db.get(key)
         if not post:
             self.error(404)
-            return
+            return self.redirect('nopost.html')
         self.render("post1.html", post=post)
-

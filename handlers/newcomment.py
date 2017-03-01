@@ -1,4 +1,4 @@
-from mainhandler import Handler
+from handlers.mainhandler import Handler
 from models.blogmodel import Blog
 from models.commentmodel import Comment
 from google.appengine.ext import db
@@ -20,6 +20,7 @@ class NewComment(Handler):
             return
         if not self.user:
             self.redirect('/blog/login')
+            return
         comment = self.request.get('comment')
         if comment:
             author = self.request.get('author')
@@ -28,4 +29,4 @@ class NewComment(Handler):
             self.redirect('/blog/%s' % post_id)
         else:
             error = "comment,Please!"
-            self.render("newcomment.html", post=post, error=error)
+            self.render("newcomment.html", error=error)

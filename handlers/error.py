@@ -1,4 +1,4 @@
-from mainhandler import Handler
+from handlers.mainhandler import Handler
 
 
 class CommentError(Handler):

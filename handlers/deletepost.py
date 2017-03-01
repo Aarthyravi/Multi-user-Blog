@@ -1,4 +1,4 @@
-from mainhandler import Handler
+from handlers.mainhandler import Handler
 from models.blogmodel import Blog
 from google.appengine.ext import db
 # User of the post can only be able to delete their post
@@ -8,6 +8,7 @@ class DeletePost(Handler):
     def get(self, post_id):
         if not self.user:
             self.redirect('/blog/login?error=You need to be logged')
+            return
         else:
             key = db.Key.from_path('Blog', int(post_id))
             post = db.get(key)
@@ -16,6 +17,7 @@ class DeletePost(Handler):
                 return
             if not self.user:
                 self.redirect('/blog/login')
+                return
             user = post.user
             loggedUser = self.user
             if user == loggedUser:

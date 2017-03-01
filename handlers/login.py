@@ -1,6 +1,6 @@
 from models.usermodel import User
-from mainhandler import Handler
-import mainhandler
+from handlers.mainhandler import Handler
+import userstuff
 # Login Handler with username & Password
 
 
@@ -14,7 +14,7 @@ class LoginHandler(Handler):
 
         u = User.login(username, password)
         if u:
-            new_cookie = make_secure(str(username))
+            new_cookie = userstuff.make_secure(str(username))
             self.response.headers.add_header('Set-Cookie',
                                              'user=%s; Path=/' % new_cookie)
             self.redirect('/blog/welcome')
