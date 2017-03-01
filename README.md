@@ -25,5 +25,8 @@
  
    - Deploy your project with gcloud app deploy.
    - View your project  appname.appspot.com.
-Multi-user Blog Url is http://blog-220804.appspot.com/blog
+   
+ #Multi-user Blog
+   - http://blog-220804.appspot.com/blog
+ 
 
