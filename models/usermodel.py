@@ -1,6 +1,5 @@
+import userstuff
 from google.appengine.ext import db
-from mainhandler import Handler
-import mainhandler
 # User Model
 
 
@@ -21,5 +20,5 @@ class User(db.Model):
     @classmethod
     def login(cls, name, pw):
         u = cls.by_name(name)
-        if u and valid_pw(name, pw, u.pw_hash):
+        if u and userstuff.valid_pw(name, pw, u.pw_hash):
             return u
